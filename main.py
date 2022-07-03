@@ -1,7 +1,6 @@
 import movimiento
 import producto
 
-import requests
 import mysql.connector
 from mysql.connector.errors import Error
 

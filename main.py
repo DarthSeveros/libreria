@@ -77,6 +77,21 @@ try:
                 mycursor.execute(deleteProducto, idProducto)
                 mydb.commit()
 
+            elif (optionMainMenu == '5'):
+                asignProducto = 'INSERT INTO lista_productos(id_bodega, id_producto, cantidad) VALUES (%s, %s, %s)'
+                idBodega = input('Ingrese el id de la bodega: ')
+                idProducto = input('Ingrese el id del producto: ')
+                cantidad = input('Ingrese la cantidad: ')
+                mycursor.execute(asignProducto,(idBodega, idProducto, cantidad))
+                mydb.commit()
+
+            elif (optionMainMenu == '6'):
+                moveProducto = 'UPDATE lista_productos SET id_bodega = %s WHERE id_bodega = %s AND id_producto = %s'
+                idProducto = input('Ingrese id del producto: ')
+                idBodegaOrigen = input('Ingrese la bodegan de origen: ')
+                idBodegaDdestino = input('Ingrese la bodega de destino: ')
+                mycursor.execute(moveProducto, (idBodegaDdestino, idBodegaOrigen, idProducto))
+
             else:
                 print("Hasta pronto")
                 break

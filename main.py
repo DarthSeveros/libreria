@@ -92,6 +92,31 @@ try:
                 idBodegaDdestino = input('Ingrese la bodega de destino: ')
                 mycursor.execute(moveProducto, (idBodegaDdestino, idBodegaOrigen, idProducto))
 
+            elif (optionMainMenu == '7'):
+                insertAutor = 'INSERT INTO autor (nombres, apellidos) VALUES(%s, %s)'
+                nombres = input('Ingrese los nombres del autor: ')
+                apellidos = input('Ingrese los apellidos del autor: ')
+                mycursor.execute(insertAutor,(nombres, apellidos))
+                mydb.commit()
+
+            elif (optionMainMenu == '8'):
+                deleteAutor = 'DELETE FROM autor WHERE id_autor == %s'
+                idAutor = input('Ingrese el id del autor: ')
+                mycursor.execute(deleteAutor, idAutor)
+                mydb.commit()
+
+            elif (optionMainMenu == '9'):
+                insertEditorial = 'INSERT INTO editorial (nombre_editorial) VALUES(%s)'
+                nombreEditorial = input('Ingrese el nombre de la editorial: ')
+                mycursor.execute(insertEditorial, nombreEditorial)
+                mydb.commit()
+
+            elif (optionMainMenu == '10'):
+                deleteEditorial = 'DELETE FROM editorial WHERE id_editorial == %s'
+                nombreEditorial = input('Ingrese el nombre de la editorial: ')
+                mycursor.execute(deleteAutor, nombreEditorial)
+                mydb.commit()
+
             else:
                 print("Hasta pronto")
                 break

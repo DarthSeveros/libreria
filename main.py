@@ -21,15 +21,28 @@ try:
         searchUserName = 'SELECT nombre_usuario, contrasena, tipo_usuario, id_usuario FROM usuario WHERE nombre_usuario = %s'
         mycursor.execute(searchUserName, [userName])
         userData = mycursor.fetchone()
-        if (userData == None or userData[1] == userPass):
+        intentos = 0
+        inside = True
+        while (inside):
+            if (intentos > 0):
+                userName = input("Ingrese nombre de usuario: ")
+                userPass = getpass("Ingrese contraseña: ")
+                searchUserName = 'SELECT nombre_usuario, contrasena, tipo_usuario, id_usuario FROM usuario WHERE nombre_usuario = %s'
+                mycursor.execute(searchUserName, [userName])
+                userData = mycursor.fetchone()
+            if (intentos > 3):
+                inside = False
+            if (userData == None or userData[1] != userPass):
+                intentos += 1
                 print('El usuario o contraseña es incorrecto')
-        else :
-            userType = userData[2]
-            idUsuario = userData[3]
+            else :
+                userType = userData[2]
+                idUsuario = userData[3]
+                break
 
         print("Bienvenido {}, ¿Qué desea hacer?".format(userName))
         
-        if (userType == 'Jefe de bodega'):
+        if (userType == 'Jefe de bodega' and inside):
             while(True):
                 optionMainMenu = input('''
 (1)Crear nueva bodega
@@ -41,7 +54,7 @@ try:
 (7)Eliminar autor
 (8)Ingresar nueva editorial
 (9)Eliminar editorial
-(10)Salir\n''')
+(10)salir\n''')
                 if(optionMainMenu == '1'):
                     createBodega = 'INSERT INTO bodega () VALUES ();'
                     mycursor.execute(createBodega)
@@ -82,13 +95,16 @@ try:
                     descripcion = input('Ingrese descipcion: ')
                     mycursor.execute(createProducto, (titulo, tipoProducto, idEditorial, descripcion))
                     mydb.commit()
-                    searchProducto = 'SELECT id_producto FROM producto WHERE titulo = %s AND idEditorial = %s'
+                    searchProducto = 'SELECT id_producto FROM producto WHERE titulo = %s AND id_editorial = %s'
                     mycursor.execute(searchProducto,(titulo, idEditorial))
-                    idProducto = mycursor.fetchone()[0]
+                    product = mycursor.fetchall()[0]
+                    idProducto = product[0]
+                    print(idProducto)
                     cantidadAutores = input('Ingrese la cantidad de autores: ')
                     for i in range(int(cantidadAutores)):
                         idAutor = input('Ingrese id del autor: ')
-                        mycursor.execute(createRegistro, (idAutor, idProducto))
+                        mycursor.execute(createRegistro, (idProducto, idAutor))
+                    mycursor.commit()
                 
                 elif (optionMainMenu == '4'):
                     deleteProducto = 'DELETE FROM producto WHERE id_producto = %s'
@@ -148,7 +164,7 @@ try:
                     print("Hasta pronto")
                     break
         
-        elif (userType == 'Bodeguero'):
+        elif (userType == 'Bodeguero' and inside):
             while(True):
                 optionMainMenu = input('''
 (1)Mover productos

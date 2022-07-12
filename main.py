@@ -102,19 +102,19 @@ try:
             elif (optionMainMenu == '8'):
                 deleteAutor = 'DELETE FROM autor WHERE id_autor == %s'
                 idAutor = input('Ingrese el id del autor: ')
-                mycursor.execute(deleteAutor, idAutor)
+                mycursor.execute(deleteAutor, (idAutor))
                 mydb.commit()
 
             elif (optionMainMenu == '9'):
                 insertEditorial = 'INSERT INTO editorial (nombre_editorial) VALUES(%s)'
                 nombreEditorial = input('Ingrese el nombre de la editorial: ')
-                mycursor.execute(insertEditorial, nombreEditorial)
+                mycursor.execute(insertEditorial, [nombreEditorial])
                 mydb.commit()
 
             elif (optionMainMenu == '10'):
                 deleteEditorial = 'DELETE FROM editorial WHERE id_editorial == %s'
                 nombreEditorial = input('Ingrese el nombre de la editorial: ')
-                mycursor.execute(deleteAutor, nombreEditorial)
+                mycursor.execute(deleteAutor, (nombreEditorial))
                 mydb.commit()
 
             else:

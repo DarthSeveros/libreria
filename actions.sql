@@ -1,0 +1,49 @@
+use libreria;
+
+drop table movimiento;
+drop table bodega;
+drop table lista_productos;
+drop table producto;
+drop table registro;
+alter table producto drop column cantidad;
+
+INSERT INTO editorial (nombre_editorial) VALUES("Abraxas");
+INSERT INTO editorial (nombre_editorial) VALUES("Acantilado");
+INSERT INTO editorial (nombre_editorial) VALUES("Adn Editores");
+INSERT INTO editorial (nombre_editorial) VALUES("Alfaguara");
+INSERT INTO editorial (nombre_editorial) VALUES("Biblok");
+INSERT INTO editorial (nombre_editorial) VALUES("Catedra");
+INSERT INTO editorial (nombre_editorial) VALUES("Catalonia");
+INSERT INTO editorial (nombre_editorial) VALUES("Debate");
+INSERT INTO editorial (nombre_editorial) VALUES("Debolsillo");
+
+show tables;
+SELECT * FROM bodega;
+SELECT * FROM lista_productos;
+SELECT * FROM producto;
+
+INSERT INTO bodega () VALUES ();
+select * from editorial;
+
+SELECT lista_productos.id,
+producto.titulo,
+bodega.id_bodega
+FROM lista_productos, producto, bodega
+WHERE
+lista_productos.id_bodega = bodega.id_bodega and
+lista_productos.id_producto = producto.id_producto;
+
+SELECT producto.tipo_producto,
+producto.titulo,
+editorial.nombre_editorial,
+producto.cantidad
+FROM producto, editorial WHERE 
+producto.id_editorial = editorial.id_editorial;
+
+SELECT id_producto FROM producto WHERE titulo = 'La invasion'; 
+
+ALTER TABLE bodega AUTO_INCREMENT = 1;
+ALTER TABLE usuario ADD COLUMN nombre_usuario varchar(20) NOT NULL;
+DELETE FROM bodega; 
+
+INSERT INTO producto(titulo, tipo_producto, id_editorial, descripcion, cantidad) VALUES("La montaña mágica", "Libro", 7, "sanatorio", 1);

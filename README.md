@@ -15,3 +15,5 @@ XAMPP
 Una vez instalados los requisitos procedemos a iniciar la aplicación XAMPP donde iniciaremos los servicios de Apache y MySQL.
 
 Para levantar la base de datos corremos el archivo sql libreria.
+
+Ejecutamos en la carpeta como py main.py

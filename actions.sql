@@ -65,4 +65,6 @@ ON bodega.id_bodega = lista_productos.id_bodega;
 SELECT * FROM registro WHERE id_autor = '2';
 SELECT cantidad FROM lista_productos WHERE id_bodega = 1 AND id_producto = 1;
 
+SELECT id_movimiento FROM movimiento ORDER BY id_movimiento DESC LIMIT 1;
+
 

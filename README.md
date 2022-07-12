@@ -10,3 +10,7 @@ Python Driver for MySQL (Connector/Python)
 
 XAMPP
 [Click aquí](https://www.apachefriends.org/download.html)
+
+
+Una vez instalados los requisitos procedemos a iniciar la aplicación XAMPP donde iniciaremos los servicios de Apache y MySQL.
+Para levenatar la base de datos corremos el archivo sql libreria.

@@ -211,14 +211,10 @@ try:
                         else:
                             cantidadTotal = cantidadMovida + int(listaProducto[0])
                             mycursor.execute(alterCantidadProducto,(cantidadTotal, idBodegaDestino, idProducto))
+                        mycursor.execute(searchMovimiento)
+                        idMovimiento = mycursor.fetchone()[0]
+                        mycursor.execute(insertProductosMovimiento, (idMovimiento, idProducto, cantidadTotal))
                     mydb.commit()
-
-                    mycursor.execute(searchMovimiento)
-                    idMovimiento = mycursor.fetchone()[0]
-
-                    mycursor.execute(insertProductosMovimiento, (idMovimiento, idProducto, cantidadTotal))
-                    mydb.commit()
-
                     print('Los productos fueron movidos exitosamente')
                 else:
                     print("Hasta pronto")

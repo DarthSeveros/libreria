@@ -2,7 +2,8 @@ CREATE DATABASE libreria;
 USE libreria;
 
 CREATE TABLE usuario(
-id_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+id_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+nombre_usuario varchar(20) NOT NULL, 
 tipo_usuario VARCHAR(14) NOT NULL,
 contrasena VARCHAR(15) NOT NULL
 );

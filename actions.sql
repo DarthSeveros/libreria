@@ -55,3 +55,14 @@ DELETE FROM bodega;
 DELETE FROM producto WHERE id_producto = 6; 
 
 INSERT INTO producto(titulo, tipo_producto, id_editorial, descripcion, cantidad) VALUES("La montaña mágica", "Libro", 7, "sanatorio", 1);
+
+SELECT bodega.id_bodega, 
+lista_productos.id_producto,
+lista_productos.cantidad FROM 
+bodega LEFT JOIN lista_productos
+ON bodega.id_bodega = lista_productos.id_bodega;
+
+SELECT * FROM registro WHERE id_autor = '2';
+SELECT cantidad FROM lista_productos WHERE id_bodega = 1 AND id_producto = 1;
+
+

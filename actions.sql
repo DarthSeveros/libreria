@@ -17,6 +17,9 @@ INSERT INTO editorial (nombre_editorial) VALUES("Catalonia");
 INSERT INTO editorial (nombre_editorial) VALUES("Debate");
 INSERT INTO editorial (nombre_editorial) VALUES("Debolsillo");
 
+INSERT INTO usuario (nombre_usuario, tipo_usuario, contrasena) VALUES ('joseivecas', 'Jefe de bodega', 'abc123');
+INSERT INTO usuario (nombre_usuario, tipo_usuario, contrasena) VALUES ('taly', 'Bodeguero', '123abc');
+
 show tables;
 SELECT * FROM bodega;
 SELECT * FROM lista_productos;

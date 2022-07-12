@@ -19,6 +19,7 @@ INSERT INTO editorial (nombre_editorial) VALUES("Debolsillo");
 
 INSERT INTO usuario (nombre_usuario, tipo_usuario, contrasena) VALUES ('joseivecas', 'Jefe de bodega', 'abc123');
 INSERT INTO usuario (nombre_usuario, tipo_usuario, contrasena) VALUES ('taly', 'Bodeguero', '123abc');
+commit;
 
 show tables;
 SELECT * FROM bodega;

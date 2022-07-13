@@ -1,0 +1,26 @@
+Los programas necesarios para la funcionar son los siguientes:
+
+Python 3
+https://www.python.org/downloads/
+
+Python Driver for MySQL (Connector/Python)
+https://dev.mysql.com/downloads/connector/python/
+
+XAMPP
+https://www.apachefriends.org/download.html
+
+MySQL workbench
+
+Una vez instalados los requisitos procedemos a iniciar la aplicación XAMPP donde iniciaremos los servicios de Apache y MySQL.
+
+Para levantar la base de datos corremos el archivo sql en mysql workbench con la conexión local libreria donde creamos la base de datos libreria que se encuntra en la carpeta sql y cada una de sus tablas.
+Con esto ya tendríamos todo lo necesario para iniciar nuestra aplicación.
+
+Dentro del archivo libreria.sql también ingresamos dos usuarios por defecto:
+user: joseivecas
+pass: abc123
+tipo: Jefe de bodega
+
+user: taly
+pass: 123abc
+tipo: Bodeguero 

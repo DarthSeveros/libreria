@@ -70,3 +70,6 @@ cantidad INT NOT NULL,
 FOREIGN KEY (id_movimiento) REFERENCES movimiento(id_movimiento),
 FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
 );
+
+INSERT INTO usuario (nombre_usuario, tipo_usuario, contrasena) VALUES ('joseivecas', 'Jefe de bodega', 'abc123');
+INSERT INTO usuario (nombre_usuario, tipo_usuario, contrasena) VALUES ('taly', 'Bodeguero', '123abc');

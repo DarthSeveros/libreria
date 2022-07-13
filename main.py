@@ -101,7 +101,6 @@ try:
                     mycursor.execute(searchProducto,(titulo, idEditorial))
                     product = mycursor.fetchall()[0]
                     idProducto = product[0]
-                    print(idProducto)
                     cantidadAutores = input('Ingrese la cantidad de autores: ')
                     for i in range(int(cantidadAutores)):
                         idAutor = input('Ingrese id del autor: ')
@@ -173,7 +172,7 @@ try:
                     selectAllMovimientos = 'SELECT movimiento.fecha, movimiento.id_origen, movimiento.id_destino, usuario.nombre_usuario FROM movimiento, usuario WHERE movimiento.id_usuario = usuario.id_usuario'
                     fechaAhora = datetime.now()
                     formatFechaAhora = fechaAhora.strftime('%c')
-                    nombreInforme = "Informe movimientos {}.txt".format(formatFechaAhora)
+                    nombreInforme = "informes-movimientos\Informe movimientos {}.txt".format(formatFechaAhora)
                     nombreInforme = nombreInforme.replace(':', '-')
                     informeMovimientos = open(nombreInforme, 'w')
                     mycursor.execute(selectAllMovimientos)
@@ -207,7 +206,7 @@ try:
 
                     fechaAhora = datetime.now()
                     formatFechaAhora = fechaAhora.strftime('%c')
-                    nombreInforme = "Informe bodega {}.txt".format(formatFechaAhora)
+                    nombreInforme = "informes-bodega\Informe bodega {}.txt".format(formatFechaAhora)
                     nombreInforme = nombreInforme.replace(':', '-')
                     informeBodega = open(nombreInforme, 'w')
 
@@ -231,7 +230,7 @@ try:
                     informeBodega.write('Id del producto        Título                              Nombre editorial                                Tipo de producto\n\n')
                     for producto in mycursor.fetchall():
                         idProducto, titulo, nombreEditorial, tipoProducto = producto
-                        informeBodega.write('{}            {}                       {}               {}\n'.format(idProducto, titulo, nombreEditorial, tipoProducto))
+                        informeBodega.write('{}                     {}                                  {}                          {}\n'.format(idProducto, titulo, nombreEditorial, tipoProducto))
                     informeBodega.close()
 
                 else:
@@ -274,7 +273,7 @@ try:
                         mycursor.execute(searchListaProducto,(idBodegaDestino, idProducto))
                         listaProducto = mycursor.fetchone()  
                         if (listaProducto == None):
-                            cantidadTotal = int(listaProducto[0])
+                            cantidadTotal = cantidadMovida
                             mycursor.execute(insertListaProducto, (idProducto, idBodegaDestino, cantidadTotal))
                         else:
                             cantidadTotal = cantidadMovida + int(listaProducto[0])

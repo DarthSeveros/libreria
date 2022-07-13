@@ -1,0 +1,11 @@
+Cantidad de productos en bodega: 3
+Tipo de producto       Cantidad
+
+Enciclopedia             1
+Libro             1
+Revista             1
+Id del producto        Título                              Nombre editorial                                Tipo de producto
+
+1                     Dos soledades                                  Debolsillo                          Libro
+2                     Mujer                                  Alfaguara                          Revista
+3                     Atlas del mundo                                  Debolsillo                          Enciclopedia

@@ -1,0 +1,2 @@
+Dentro de nuestra aplicación tenemos la clase única main donde se desarrolla toda la paplicación
+

@@ -94,6 +94,7 @@ editorial,
 producto
 WHERE lista_productos.id_producto = producto.id_producto
 AND producto.id_editorial = editorial.id_editorial
-AND id_bodega = 1;
+AND id_bodega = 1
+AND nombre_editorial = '';
 
 

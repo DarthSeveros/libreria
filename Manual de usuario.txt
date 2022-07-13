@@ -1,0 +1,72 @@
+Para abrir la aplicación ejecutamos desde la consola de comandos en la ubicación del archivo main con el comando:
+
+py main.py
+
+O bien simplemente ejecutamos la aplicación main.py con doble click.
+
+Dentro de la aplicación lo primero que debemos hacer es ingresar el usuario y luega la contraseña.
+Una vez hecho esto se desplegará una lista con las opciones que podemos llevar a cabo, ya sea como Bodeguero o como Jefe de bodega
+tendremos opciones distintas
+
+Jefe de bodega
+
+Como Jefe de bodega tenemos la mayor cantidad de opciones dentro de las cuales tenemos:
+
+(1)Crear nueva bodega
+(2)Eliminar bodega
+(3)Ingresar producto nuevo
+(4)Eliminar producto
+(5)Asignar producto a una bodega
+(6)Ingresar nuevo autor
+(7)Eliminar autor
+(8)Ingresar nueva editorial
+(9)Eliminar editorial
+(10)Generar informe de movimientos
+(11)Generar informe de bodega
+(12)salir
+
+Crear nueva bodega
+Crea una nueva bodega y le asigna un id.
+
+Eliminar bodega
+Eliminamos una bodega a través de su id mientras esta no posea ningun producto asociado.
+
+Ingresar producto nuevo
+Ingresamos un producto nuevo al sistema que no estará almacenado en ninguna bodega hasta que este sea asignado.
+Debemos tener en cuenta que para ingresar un nuevo producto debemos tener ya ingresados tanto los autores como la editorial.
+
+Eliminar producto
+Eliminiamos un producto a través de su id mientras no esté asociado a ninguna bodega.
+
+Asignar producto a una bodega
+Asignamos un producto libre a una bodega ya existente a través de sus id.
+
+Ingresar nuevo autor
+Ingresamos un nuevo autor donde se solicita primero sus nombres y luego sus apellidos.
+
+Eliminar autor
+Eliminamos un autor a través de su id.
+
+Ingresar nueva editorial
+Ingresamos una nueva editorial con su nombre.
+
+Eliminar editorial
+Eliminamos la editorial a través de su id.
+
+Generar informe de movimientos
+Se generará un informe de todos los movimientos hechos que seran almacenados en la carpeta informes-movimientos
+
+Generar informe de bodega
+Se generará un informe de la cantidad de productos que hay en la bodega, la cantidad de estos por tipo de producto y una lista con
+todos los productos almacenados en bodega que pueden ser filtrados por editorial
+
+Bodeguero
+
+Como Bodeguero tenemos las opciones de:
+
+(1)Mover productos
+(2)salir
+
+Mover productos
+Movemos productos desde una bodega a otra con los datos de la bodega de origen, bodega de destino, cantidad de productos y el id de los
+productos a mover.

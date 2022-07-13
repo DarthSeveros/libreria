@@ -1,5 +1,5 @@
 from getpass import getpass
-
+from datetime import datetime
 import mysql.connector
 
 try:
@@ -52,7 +52,9 @@ try:
 (7)Eliminar autor
 (8)Ingresar nueva editorial
 (9)Eliminar editorial
-(10)salir\n''')
+(10)Generar informe de movimientos
+(11)Generar informe de bodega
+(12)salir\n''')
                 if(optionMainMenu == '1'):
                     createBodega = 'INSERT INTO bodega () VALUES ();'
                     mycursor.execute(createBodega)
@@ -167,6 +169,71 @@ try:
                     else:
                         print('La editorial ya se encuentra asignada a un producto. Imposible eliminar.')
 
+                elif (optionMainMenu == '10'):
+                    selectAllMovimientos = 'SELECT movimiento.fecha, movimiento.id_origen, movimiento.id_destino, usuario.nombre_usuario FROM movimiento, usuario WHERE movimiento.id_usuario = usuario.id_usuario'
+                    fechaAhora = datetime.now()
+                    formatFechaAhora = fechaAhora.strftime('%c')
+                    nombreInforme = "Informe movimientos {}.txt".format(formatFechaAhora)
+                    nombreInforme = nombreInforme.replace(':', '-')
+                    informeMovimientos = open(nombreInforme, 'w')
+                    mycursor.execute(selectAllMovimientos)
+                    informeMovimientos.write('Fecha movimiento      Bodega de origen    Bodega de destino       Nombre de usuario\n\n')
+                    for movimiento in mycursor.fetchall():
+                        fecha, origen, destino, usuario = movimiento
+                        informeMovimientos.write('{0}       {1}                     {2}                     {3}\n'.format(fecha, origen, destino, usuario))
+                    informeMovimientos.close()
+
+                elif (optionMainMenu == '11'):
+                    selectCantidadProductos = 'SELECT COUNT(*) FROM lista_productos WHERE id_bodega = %s'
+                    selectByTipo = '''SELECT producto.tipo_producto, COUNT(*) FROM lista_productos, producto 
+                                    WHERE lista_productos.id_producto = producto.id_producto
+                                    AND id_bodega = %s
+                                    GROUP BY tipo_producto'''
+                    selectAllProductos = '''
+                    SELECT producto.id_producto,
+                    producto.titulo,
+                    editorial.nombre_editorial,
+                    producto.tipo_producto
+                    FROM lista_productos,
+                    editorial,
+                    producto
+                    WHERE lista_productos.id_producto = producto.id_producto
+                    AND producto.id_editorial = editorial.id_editorial
+                    AND id_bodega = %s 
+                    '''
+                    selectByEditorial = selectAllProductos + ',AND nombre_editorial = %s'
+
+                    idBodega = input('Ingrese id de la bodega: ')
+
+                    fechaAhora = datetime.now()
+                    formatFechaAhora = fechaAhora.strftime('%c')
+                    nombreInforme = "Informe bodega {}.txt".format(formatFechaAhora)
+                    nombreInforme = nombreInforme.replace(':', '-')
+                    informeBodega = open(nombreInforme, 'w')
+
+                    mycursor.execute(selectCantidadProductos, [idBodega])
+                    cantidadProductos = mycursor.fetchone()[0]
+                    informeBodega.write('Cantidad de productos en bodega: {}\n'.format(cantidadProductos))
+
+                    mycursor.execute(selectByTipo, [idBodega])
+                    informeBodega.write('Tipo de producto       Cantidad\n\n')
+                    for tipo in mycursor.fetchall():
+                        tipoProducto, cantidadTipoProducto = tipo
+                        informeBodega.write('{}             {}\n'.format(tipoProducto, cantidadTipoProducto))
+                    
+                    seleccion = input('¿Desea seleccionar por editorial? ')
+                    if (seleccion.lower() == 'si'):
+                        nombreEditorial = input('Ingrese el nombre de la editorial: ')
+                        mycursor.execute(selectByEditorial,(idBodega, nombreEditorial))
+                    else:
+                        mycursor.execute(selectAllProductos, [idBodega])
+
+                    informeBodega.write('Id del producto        Título                              Nombre editorial                                Tipo de producto\n\n')
+                    for producto in mycursor.fetchall():
+                        idProducto, titulo, nombreEditorial, tipoProducto = producto
+                        informeBodega.write('{}            {}                       {}               {}\n'.format(idProducto, titulo, nombreEditorial, tipoProducto))
+                    informeBodega.close()
+
                 else:
                     print("Hasta pronto")
                     break
@@ -207,6 +274,7 @@ try:
                         mycursor.execute(searchListaProducto,(idBodegaDestino, idProducto))
                         listaProducto = mycursor.fetchone()  
                         if (listaProducto == None):
+                            cantidadTotal = int(listaProducto[0])
                             mycursor.execute(insertListaProducto, (idProducto, idBodegaDestino, cantidadTotal))
                         else:
                             cantidadTotal = cantidadMovida + int(listaProducto[0])

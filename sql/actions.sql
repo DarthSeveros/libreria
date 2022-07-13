@@ -67,4 +67,33 @@ SELECT cantidad FROM lista_productos WHERE id_bodega = 1 AND id_producto = 1;
 
 SELECT id_movimiento FROM movimiento ORDER BY id_movimiento DESC LIMIT 1;
 
+SELECT movimiento.fecha, 
+movimiento.id_origen, 
+movimiento.id_destino,
+usuario.nombre_usuario
+FROM movimiento, usuario
+WHERE movimiento.id_usuario = usuario.id_usuario;
+
+SELECT lista_productos.id_bodega
+FROM bodega;
+
+SELECT COUNT(*) FROM lista_productos WHERE id_bodega = 1;
+
+SELECT producto.tipo_producto, COUNT(*) FROM lista_productos, producto 
+WHERE lista_productos.id_producto = producto.id_producto
+AND id_bodega = 1
+GROUP BY tipo_producto;
+
+SELECT lista_productos.id_bodega, 
+producto.id_producto,
+producto.titulo,
+editorial.nombre_editorial,
+producto.tipo_producto
+FROM lista_productos,
+editorial,
+producto
+WHERE lista_productos.id_producto = producto.id_producto
+AND producto.id_editorial = editorial.id_editorial
+AND id_bodega = 1;
+
 
